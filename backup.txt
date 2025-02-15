@@ -1,0 +1,22 @@
+urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('random_quote/', views.get_random_quote, name='get_random_quote'),
+    path('', views.get_random_quote, name='get_random_quote'),
+]
+
+
+
+
+
+views.py
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.http import require_http_methods
+
+@require_http_methods(['GET'])
+def get_random_quote(request):
+    # Return a random quote here
+    return JsonResponse({'quote': 'This is a random quote'})
